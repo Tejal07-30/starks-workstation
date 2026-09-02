@@ -1,4 +1,4 @@
-Stark's Workstation 
+ Stark's Workstation
 
 A computer vision based Human-Computer Interaction system built using Python, OpenCV, MediaPipe, and PyAutoGUI. The project recognizes hand gestures in real time through a webcam and extends them into a virtual mouse for controlling the computer without a physical mouse.
 
