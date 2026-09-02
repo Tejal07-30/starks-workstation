@@ -13,13 +13,13 @@ Gesture recognition with confidence score.
 
 Recognized gestures:
 
-✋ Open Palm
+- Open Palm
 
-✊ Closed Fist
+- Closed Fist
 
-✌️ Victory
+- Victory
 
-👍 Thumbs Up
+- Thumbs Up
 
 Dynamic Swipe Left and Right detection using fingertip motion.
 
