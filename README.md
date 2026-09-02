@@ -29,10 +29,6 @@ Cursor movement using the index fingertip.
 
 Smooth cursor movement with interpolation.
 
-Active control area for better usability.
-
-Foundation for click, drag, and additional mouse interactions.
-
 Tech Stack
 
 Python 3.12
