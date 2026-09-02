@@ -1,5 +1,26 @@
 import math
 
+import math
+
+def pinch_distance(hand_landmarks):
+    
+    #Returns the distance between thumb tip (4) and index tip (8).
+
+    thumb = hand_landmarks.landmark[4]
+    index = hand_landmarks.landmark[8]
+
+    return math.hypot(
+        thumb.x - index.x,
+        thumb.y - index.y
+    )
+
+
+def is_pinching(hand_landmarks, threshold=0.05):
+    
+   #Returns True if thumb and index finger are close enough.
+    
+    return pinch_distance(hand_landmarks) < threshold
+
 
 def distance(p1, p2):
     #Euclidean distance between two landmarks.
