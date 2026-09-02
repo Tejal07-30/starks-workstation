@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-from gesture_recog import fingers_up, classify_gesture
+from gesture_recog import fingers_up, classify_gesture, detect_swipe
 
 camera = cv2.VideoCapture(0)
 
@@ -12,7 +12,7 @@ hands = mp_hands.Hands(
     min_detection_confidence=0.7,
     min_tracking_confidence=0.7
 )
-
+history = []
 while True:
     success, frame = camera.read()
 
@@ -45,15 +45,22 @@ while True:
 
             x = int(index_tip.x * w)
             y = int(index_tip.y * h)
+            history.append((x,y))
+            if len(history)>10:
+                history.pop(0)
 
             cv2.circle(frame, (x, y), 10, (0, 255, 0), -1)
 
             finger_states = fingers_up(hand_landmarks, hand_label)
-            gesture = classify_gesture(finger_states)
+            gesture, confidence = classify_gesture(finger_states)
+            swipe = detect_swipe(history)
+            if swipe:
+                gesture = swipe
+                confidence = 100
 
             cv2.putText(
                 frame,
-                f"Gesture: {gesture}",
+                f"Gesture: {gesture} ({confidence}%)",
                 (20,80),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.9,
@@ -72,6 +79,8 @@ while True:
             )
 
     else:
+        history.clear()
+        
         cv2.putText(
             frame,
             "No Hand Detected",
