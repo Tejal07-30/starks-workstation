@@ -1,7 +1,5 @@
 import math
 
-import math
-
 def pinch_distance(hand_landmarks):
     
     #Returns the distance between thumb tip (4) and index tip (8).
